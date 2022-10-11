@@ -1,0 +1,5 @@
+.vscode
+*_amici
+Pipfile
+*_optimize_result_*
+__pycache__

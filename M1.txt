@@ -1,0 +1,37 @@
+********** MODEL NAME
+M1
+********** MODEL NOTES
+
+********** MODEL STATES 
+d/dt(R) = r3+r2-r1 
+d/dt(Rp) = r1-r2-r3 
+d/dt(RS) = r4-r5 
+d/dt(RSp) = r5-r4
+d/dt(S) = 0
+ 
+R(0) = 1 
+Rp(0) = 0 
+RS(0) = 1 
+RSp(0) = 0 
+S(0) = 1
+
+********** MODEL PARAMETERS 
+k1 = 1 
+k2 = 0.0001 
+kfeed = 1000000
+k4 = 1 
+k5 = 0.01 
+ 
+********** MODEL VARIABLES 
+y_sim = Rp
+
+********** MODEL REACTIONS 
+r1 = R*S*k1 
+r2 = Rp*k2
+r3 = Rp*RSp*kfeed 
+r4 = RSp*k4
+r5 = RS*Rp*k5
+
+********** MODEL FUNCTIONS
+********** MODEL EVENTS
+********** MODEL MATLAB FUNCTIONS

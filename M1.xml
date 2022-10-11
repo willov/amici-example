@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" level="3" version="1">
+  <model id="M1" name="M1">
+    <listOfCompartments>
+      <compartment id="Compartment" size="1" constant="true"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species id="R" compartment="Compartment" initialAmount="1" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="Rp" compartment="Compartment" initialAmount="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="RS" compartment="Compartment" initialAmount="1" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="RSp" compartment="Compartment" initialAmount="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="S" compartment="Compartment" initialAmount="1" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter id="t" name="t" constant="false"/>
+      <parameter id="k1" name="k1" value="1" constant="true"/>
+      <parameter id="k2" name="k2" value="0.0001" constant="true"/>
+      <parameter id="kfeed" name="kfeed" value="1000000" constant="true"/>
+      <parameter id="k4" name="k4" value="1" constant="true"/>
+      <parameter id="k5" name="k5" value="0.01" constant="true"/>
+      <parameter id="r1" name="r1" constant="false"/>
+      <parameter id="r2" name="r2" constant="false"/>
+      <parameter id="r3" name="r3" constant="false"/>
+      <parameter id="r4" name="r4" constant="false"/>
+      <parameter id="r5" name="r5" constant="false"/>
+    </listOfParameters>
+    <listOfRules>
+      <assignmentRule variable="t">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/time"> time </csymbol>
+        </math>
+      </assignmentRule>
+      <rateRule variable="R">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <apply>
+              <plus/>
+              <ci> r3 </ci>
+              <ci> r2 </ci>
+            </apply>
+            <ci> r1 </ci>
+          </apply>
+        </math>
+      </rateRule>
+      <rateRule variable="Rp">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <apply>
+              <minus/>
+              <ci> r1 </ci>
+              <ci> r2 </ci>
+            </apply>
+            <ci> r3 </ci>
+          </apply>
+        </math>
+      </rateRule>
+      <rateRule variable="RS">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <ci> r4 </ci>
+            <ci> r5 </ci>
+          </apply>
+        </math>
+      </rateRule>
+      <rateRule variable="RSp">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <ci> r5 </ci>
+            <ci> r4 </ci>
+          </apply>
+        </math>
+      </rateRule>
+      <rateRule variable="S">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <cn type="integer"> 0 </cn>
+        </math>
+      </rateRule>
+      <assignmentRule variable="r1">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> R </ci>
+            <ci> S </ci>
+            <ci> k1 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="r2">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> Rp </ci>
+            <ci> k2 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="r3">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> Rp </ci>
+            <ci> RSp </ci>
+            <ci> kfeed </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="r4">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> RSp </ci>
+            <ci> k4 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="r5">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> RS </ci>
+            <ci> Rp </ci>
+            <ci> k5 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+    </listOfRules>
+  </model>
+</sbml>
